@@ -26,11 +26,12 @@ class JobFactory extends Factory
         ];
     }
 
-    public function configure()
-    {
-        return $this->afterCreating(function (Job $job) {
-            $tags = Tag::factory()->count(2)->create();
-            $job->tags()->attach($tags->pluck('id'));
-        });
-    }
+    //only for testing
+    // public function configure()
+    // {
+    //     return $this->afterCreating(function (Job $job) {
+    //         $tags = Tag::factory()->count(2)->create();
+    //         $job->tags()->attach($tags->pluck('id'));
+    //     });
+    // }
 }

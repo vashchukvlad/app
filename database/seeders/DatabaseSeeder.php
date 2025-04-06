@@ -25,16 +25,14 @@ class DatabaseSeeder extends Seeder
 
         Employer::factory(10)->create();
 
-        // Uncomment the following lines to create tags and associate them with jobs and posts
-        // in case you don't want to use the factory's afterCreating method in JobFactory.php and PostFactory.php.
-        // Tag::factory()
-        //     ->count(10)
-        //     ->create()
-        //     ->each(function ($tag) {
-        //         $jobs = Job::inRandomOrder()->take(3)->pluck('id');
-        //         $posts = Job::inRandomOrder()->take(3)->pluck('id');
-        //         $tag->posts()->attach($posts);
-        //         $tag->jobs()->attach($jobs);
-        //     });
+        Tag::factory()
+            ->count(10)
+            ->create()
+            ->each(function ($tag) {
+                $jobs = Job::inRandomOrder()->take(3)->pluck('id');
+                $posts = Job::inRandomOrder()->take(3)->pluck('id');
+                $tag->posts()->attach($posts);
+                $tag->jobs()->attach($jobs);
+            });
     }
 }

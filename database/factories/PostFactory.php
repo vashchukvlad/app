@@ -24,11 +24,14 @@ class PostFactory extends Factory
         ];
     }
 
-    public function configure()
-    {
-        return $this->afterCreating(function (Post $post) {
-            $tags = Tag::factory()->count(2)->create();
-            $post->tags()->attach($tags->pluck('id'));
-        });
-    }
+    //only for testing
+    // This method is used to create a relationship between the Post and Tag models
+    
+    // public function configure()
+    // {
+    //     return $this->afterCreating(function (Post $post) {
+    //         $tags = Tag::factory()->count(2)->create();
+    //         $post->tags()->attach($tags->pluck('id'));
+    //     });
+    // }
 }
