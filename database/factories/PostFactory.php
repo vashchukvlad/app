@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,16 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'title' => fake()->text(20),
+            'body' => fake()->text(200),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Post $post) {
+            $tags = Tag::factory()->count(2)->create();
+            $post->tags()->attach($tags->pluck('id'));
+        });
     }
 }
